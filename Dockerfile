@@ -47,9 +47,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 USER nextjs
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 3003
 
-ENV PORT 3000
+ENV PORT 3003
 # set hostname to localhost
 ENV HOSTNAME "0.0.0.0"
 
