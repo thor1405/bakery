@@ -110,3 +110,5 @@ export default async function ProductsPage() {
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic';
