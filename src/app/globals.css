@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+:root {
+  /* Warm Cream/Ivory background */
+  --background: #fdfbf7;
+  --foreground: #1c1917; /* Matte Black / Dark Stone */
+  
+  /* Soft Brown / Caramel */
+  --primary: #8b5a2b;
+  --primary-foreground: #ffffff;
+  
+  /* Subtle Gold */
+  --secondary: #d4af37;
+  --secondary-foreground: #1c1917;
+  
+  /* Matte Black Accents */
+  --accent: #292524;
+  --accent-foreground: #fdfbf7;
+  
+  --muted: #f5f0e6;
+  --muted-foreground: #78716c;
+  
+  --border: #e7e5e4;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1c1917; /* Matte Black */
+    --foreground: #fdfbf7; /* Warm Cream */
+    
+    --primary: #c28e56; /* Lighter Brown */
+    --primary-foreground: #1c1917;
+    
+    --secondary: #e6c563; /* Lighter Gold */
+    --secondary-foreground: #1c1917;
+    
+    --accent: #292524;
+    --accent-foreground: #fdfbf7;
+    
+    --muted: #292524;
+    --muted-foreground: #a8a29e;
+    
+    --border: #44403c;
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), serif;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(253, 251, 247, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .glass {
+    background: rgba(28, 25, 23, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for clean look (optional, but requested for Awwwards feel) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
 }
