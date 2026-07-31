@@ -32,8 +32,8 @@ export function Navbar() {
   return (
     <motion.header
       className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out ${
-        isScrolled
-          ? "glass py-4 shadow-sm"
+        isScrolled || !isHome
+          ? "bg-white/95 backdrop-blur-md py-4 shadow-sm"
           : "bg-transparent py-6 text-white"
       }`}
       initial={{ y: -100 }}
@@ -45,7 +45,7 @@ export function Navbar() {
         <Link
           href="/"
           className={`text-2xl font-serif font-bold tracking-wider ${
-            isScrolled || !isHome ? "text-[var(--foreground)]" : "text-white"
+            isScrolled || !isHome ? "text-gray-900" : "text-white"
           }`}
         >
           CREAM CARAMEL
@@ -71,7 +71,7 @@ export function Navbar() {
           <CartDrawer isDarkText={isScrolled || !isHome} />
           
           <button
-            className={`md:hidden ${isScrolled || !isHome ? "text-[var(--foreground)]" : "text-white"}`}
+            className={`md:hidden ${isScrolled || !isHome ? "text-gray-900" : "text-white"}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

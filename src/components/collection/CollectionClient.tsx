@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCartStore } from "@/lib/store";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Phone, Mail } from "lucide-react";
 import { ProductDetailModal } from "./ProductDetailModal";
 
 export function CollectionClient({ products, categories }: { products: any[], categories: any[] }) {
@@ -24,6 +24,9 @@ export function CollectionClient({ products, categories }: { products: any[], ca
   const filteredProducts = activeCategory === "all"  
     ? products 
     : products.filter(p => p.category?._id === activeCategory);
+
+  const activeCategoryObj = categories.find(cat => cat._id === activeCategory);
+  const isCustomCakes = activeCategoryObj?.name?.toLowerCase().includes("custom");
 
   return (
     <div className="min-h-screen bg-white pt-28 pb-20">
@@ -64,14 +67,57 @@ export function CollectionClient({ products, categories }: { products: any[], ca
             <motion.div layout className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
               <AnimatePresence>
                 {filteredProducts.length === 0 ? (
-                  <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="col-span-full py-20 text-gray-500 font-serif text-xl"
-                  >
-                    No products found in this category.
-                  </motion.div>
+                  isCustomCakes ? (
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="col-span-full py-12 px-8 bg-gray-50 border border-gray-100 shadow-sm"
+                    >
+                      <h3 className="text-3xl font-serif text-[#a58641] mb-4">Let's Create Something Special</h3>
+                      <p className="text-gray-600 font-light mb-8 max-w-2xl leading-relaxed">
+                        Custom cakes are crafted uniquely for your celebrations. Please contact us directly to discuss your vision, flavors, and design requirements.
+                      </p>
+                      
+                      <div className="flex flex-col sm:flex-row gap-8 mb-10">
+                        <div className="flex items-center text-gray-800">
+                          <div className="w-10 h-10 rounded-full bg-[#f4c8b6] text-[#a58641] flex items-center justify-center mr-4 shadow-sm">
+                            <Phone className="w-5 h-5" />
+                          </div>
+                          <span className="font-semibold tracking-wide">+91 98765 43210</span>
+                        </div>
+                        <div className="flex items-center text-gray-800">
+                          <div className="w-10 h-10 rounded-full bg-[#f4c8b6] text-[#a58641] flex items-center justify-center mr-4 shadow-sm">
+                            <Mail className="w-5 h-5" />
+                          </div>
+                          <span className="font-semibold tracking-wide">hello@creamcaramel.com</span>
+                        </div>
+                      </div>
+                      
+                      <form className="max-w-2xl space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <input type="text" placeholder="Your Name" className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-[#a58641] transition-colors" />
+                          <input type="tel" placeholder="Phone Number" className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-[#a58641] transition-colors" />
+                        </div>
+                        <textarea placeholder="Tell us about your custom cake idea (date, occasion, design)..." rows={4} className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-[#a58641] transition-colors"></textarea>
+                        <button type="button" onClick={() => {
+                          setShowToast(true);
+                          setTimeout(() => setShowToast(false), 3000);
+                        }} className="px-8 py-4 bg-[#a58641] text-white uppercase tracking-widest text-sm font-semibold hover:bg-[#8b6f33] transition-colors shadow-md">
+                          Send Inquiry
+                        </button>
+                      </form>
+                    </motion.div>
+                  ) : (
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="col-span-full py-20 text-gray-500 font-serif text-xl"
+                    >
+                      No products found in this category.
+                    </motion.div>
+                  )
                 ) : (
                   filteredProducts.map((product) => (
                     <motion.div 

@@ -133,11 +133,7 @@ export function LandingPageClient({ categories = [], products = [] }: { categori
       <section className="py-24 bg-[var(--background)]">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col items-center text-center mb-20 relative z-10">
-            {/* Watermark text */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] text-6xl md:text-[180px] font-serif font-black text-[var(--muted)] opacity-50 whitespace-nowrap pointer-events-none -z-10 tracking-widest">
-              FAVORITES
-            </div>
-            
+
             <motion.div 
               className="flex items-center space-x-4 mb-4"
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
@@ -171,52 +167,43 @@ export function LandingPageClient({ categories = [], products = [] }: { categori
               products.map((product: any, idx: number) => (
                 <motion.div 
                   key={product._id}
-                  className="group flex flex-col bg-white dark:bg-[#1a1a1a] shadow-lg hover:shadow-2xl rounded-md overflow-hidden transition-all duration-500 border border-gray-100 dark:border-gray-800"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  className="group flex flex-col"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.2 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
                 >
-                  <div className="relative h-80 overflow-hidden">
+                  <div className="relative aspect-square overflow-hidden mb-5 bg-gray-50 shadow-sm border border-gray-100">
                     <Image 
                       src={product.images?.[0] || "https://images.unsplash.com/photo-1582293041079-7814c2f12063"} 
                       alt={product.name} 
                       fill 
                       sizes="(max-width: 768px) 100vw, 33vw" 
-                      className="object-cover transition-transform duration-1000 group-hover:scale-110" 
+                      className="object-cover transition-transform duration-700 group-hover:scale-105" 
                     />
                     
-                    {/* Ribbon / Badge */}
-                    <div className="absolute top-4 left-0 bg-[var(--primary)] text-white px-4 py-1.5 shadow-md flex items-center rounded-r-sm">
-                      <Award className="w-4 h-4 mr-1.5" />
-                      <span className="text-[10px] uppercase tracking-widest font-bold">Best Seller</span>
-                    </div>
-
-                    <div className="absolute top-4 right-4 bg-white/90 p-2.5 rounded-full backdrop-blur-md cursor-pointer hover:bg-white hover:scale-110 shadow-sm transition-all">
-                      <Heart className="w-5 h-5 text-gray-400 hover:text-red-500 transition-colors" />
+                    <div className="absolute top-4 left-0 bg-[#f4c8b6] text-[#a58641] px-4 py-1.5 flex items-center shadow-sm z-10">
+                      <span className="text-[11px] uppercase tracking-widest font-bold flex items-center">
+                        <span className="w-1.5 h-1.5 bg-[#a58641] rotate-45 mr-2"></span>
+                        Bestseller
+                        <span className="w-1.5 h-1.5 bg-[#a58641] rotate-45 ml-2"></span>
+                      </span>
+                      <div className="absolute right-[-10px] top-0 border-[14px] border-transparent border-l-[#f4c8b6] h-full" style={{ borderRightWidth: 0 }}></div>
                     </div>
                   </div>
                   
-                  <div className="flex flex-col flex-grow p-8">
-                    <div className="flex justify-between items-center mb-4">
-                      <h3 className="text-[22px] font-serif text-gray-900 dark:text-gray-100 font-normal tracking-wide capitalize">{product.name}</h3>
-                      <span className="text-[#a58641] font-medium text-lg ml-4">₹{product.price}</span>
-                    </div>
-                    
-                    <p className="text-gray-500 dark:text-gray-400 font-light text-[15px] mb-8 line-clamp-2 flex-grow leading-relaxed">
-                      {product.description || "A delicious artisanal treat baked fresh."}
-                    </p>
-                    
+                  <h3 className="text-xl font-serif text-[#a58641] mb-2">{product.name}</h3>
+                  <p className="text-gray-500 font-light text-sm mb-5 line-clamp-2">
+                    {product.description || "A delicious artisanal treat baked fresh."}
+                  </p>
+                  
+                  <div className="flex items-center justify-between mt-auto">
+                    <span className="text-gray-900 font-semibold text-lg">₹ {product.price}</span>
                     <button 
                       onClick={() => addItem(product)}
-                      className="group/btn relative flex items-center justify-center w-full py-4 bg-black dark:bg-white text-white dark:text-black uppercase tracking-[0.2em] text-xs font-semibold overflow-hidden rounded-sm transition-all shadow-md hover:shadow-lg"
+                      className="px-5 py-2 rounded-full bg-[#f4c8b6] hover:bg-[#efb9a2] text-[#a58641] font-semibold text-xs tracking-wider uppercase transition-colors shadow-sm"
                     >
-                      <span className="relative z-10 flex items-center transition-transform duration-500 group-hover/btn:-translate-y-12">
-                        Add to Order <ShoppingCart className="w-4 h-4 ml-2" />
-                      </span>
-                      <span className="absolute inset-0 z-10 flex items-center justify-center translate-y-full transition-transform duration-500 group-hover/btn:translate-y-0 text-[var(--secondary)]">
-                        Confirm <ArrowRight className="w-4 h-4 ml-2" />
-                      </span>
+                      Order Online
                     </button>
                   </div>
                 </motion.div>
@@ -230,11 +217,7 @@ export function LandingPageClient({ categories = [], products = [] }: { categori
       <section id="menu" className="py-24 bg-[var(--muted)]">
         <div className="container mx-auto px-6 md:px-12 text-center">
           <div className="flex flex-col items-center text-center mb-16 relative z-10">
-            {/* Watermark text */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] text-6xl md:text-[180px] font-serif font-black text-gray-200/50 dark:text-white/5 whitespace-nowrap pointer-events-none -z-10 tracking-widest">
-              COLLECTION
-            </div>
-            
+
             <motion.div 
               className="flex items-center space-x-4 mb-4"
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
