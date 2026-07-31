@@ -34,8 +34,8 @@ export function CartDrawer({ isDarkText }: { isDarkText: boolean }) {
           )}
         </button>
         <button 
-          onClick={() => setIsOpen(true)}
-          className="px-6 py-2 bg-[#9c6f44] text-white text-sm font-semibold uppercase tracking-wider hover:bg-[#855d36] transition-colors rounded-sm shadow-sm"
+          onClick={() => router.push("/collection")}
+          className="px-6 py-2 bg-[#a58641] text-white text-sm font-semibold uppercase tracking-wider hover:bg-[#8b6f33] transition-colors rounded-sm shadow-sm"
         >
           Order Online
         </button>
