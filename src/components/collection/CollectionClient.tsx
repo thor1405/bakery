@@ -96,10 +96,10 @@ export function CollectionClient({ products, categories }: { products: any[], ca
                       
                       <form className="max-w-2xl space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <input type="text" placeholder="Your Name" className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-[#a58641] transition-colors" />
-                          <input type="tel" placeholder="Phone Number" className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-[#a58641] transition-colors" />
+                          <input type="text" placeholder="Your Name" className="w-full px-4 py-3 bg-white border border-gray-200 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-[#a58641] transition-colors" />
+                          <input type="tel" placeholder="Phone Number" className="w-full px-4 py-3 bg-white border border-gray-200 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-[#a58641] transition-colors" />
                         </div>
-                        <textarea placeholder="Tell us about your custom cake idea (date, occasion, design)..." rows={4} className="w-full px-4 py-3 bg-white border border-gray-200 focus:outline-none focus:border-[#a58641] transition-colors"></textarea>
+                        <textarea placeholder="Tell us about your custom cake idea (date, occasion, design)..." rows={4} className="w-full px-4 py-3 bg-white border border-gray-200 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-[#a58641] transition-colors"></textarea>
                         <button type="button" onClick={() => {
                           setShowToast(true);
                           setTimeout(() => setShowToast(false), 3000);
