@@ -14,7 +14,7 @@ const productSchema = z.object({
   price: z.coerce.number().min(0, "Price must be positive"),
   stock: z.coerce.number().min(0, "Stock cannot be negative"),
   category: z.string().min(1, "Category is required"),
-  bestSeller: z.boolean().default(false),
+  bestSeller: z.boolean().optional(),
   description: z.string().optional(),
   sku: z.string().optional(),
   ingredients: z.string().optional(),
