@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  artisan-bakery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: artisan-bakery-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      # Remember to pass your MongoDB URI and JWT secrets here in production!
+      # E.g.
+      # - MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/bakery?retryWrites=true&w=majority
+      # - JWT_SECRET=your_super_secret_key
+    env_file:
+      - .env.local
