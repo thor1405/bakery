@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export function CartDrawer({ isScrolled }: { isScrolled: boolean }) {
+export function CartDrawer({ isDarkText }: { isDarkText: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const cartStore = useCartStore();
   const router = useRouter();
@@ -21,17 +21,25 @@ export function CartDrawer({ isScrolled }: { isScrolled: boolean }) {
 
   return (
     <>
-      <button 
-        onClick={() => setIsOpen(true)}
-        className={`relative hover:text-[var(--primary)] transition-colors ${isScrolled ? "text-[var(--foreground)]" : "text-white"}`}
-      >
-        <ShoppingBag className="w-5 h-5" />
-        {cartStore.getCartCount() > 0 && (
-          <span className="absolute -top-2 -right-2 bg-[var(--primary)] text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
-            {cartStore.getCartCount()}
-          </span>
-        )}
-      </button>
+      <div className="flex items-center space-x-6">
+        <button 
+          onClick={() => setIsOpen(true)}
+          className={`relative hover:text-[#9c6f44] transition-colors ${isDarkText ? "text-gray-700" : "text-white"}`}
+        >
+          <ShoppingBag className="w-6 h-6" />
+          {cartStore.getCartCount() > 0 && (
+            <span className="absolute -top-2 -right-2 bg-[#9c6f44] text-white text-[11px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-sm hover:scale-110 transition-transform">
+              {cartStore.getCartCount()}
+            </span>
+          )}
+        </button>
+        <button 
+          onClick={() => setIsOpen(true)}
+          className="px-6 py-2 bg-[#9c6f44] text-white text-sm font-semibold uppercase tracking-wider hover:bg-[#855d36] transition-colors rounded-sm shadow-sm"
+        >
+          Order Online
+        </button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (

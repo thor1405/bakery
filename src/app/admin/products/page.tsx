@@ -3,6 +3,7 @@ import Product from "@/models/Product";
 import Category from "@/models/Category";
 import { Edit2, Trash2, Search, Filter } from "lucide-react";
 import { CreateProductModal } from "@/components/admin/CreateProductModal";
+import { ProductActions } from "@/components/admin/ProductActions";
 
 async function getProducts() {
   await connectToDatabase();
@@ -72,7 +73,14 @@ export default async function ProductsPage() {
                 products.map((product: any) => (
                   <tr key={product._id} className="hover:bg-gray-50/50 dark:hover:bg-[#242424]/50 transition-colors group">
                     <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">
-                      {product.name}
+                      <div className="flex items-center space-x-2">
+                        <span>{product.name}</span>
+                        {product.bestSeller && (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50 uppercase tracking-wider">
+                            Best Seller
+                          </span>
+                        )}
+                      </div>
                     </td>
                     <td className="px-6 py-4 text-gray-500 dark:text-gray-400">
                       {product.category?.name || "-"}
@@ -91,14 +99,7 @@ export default async function ProductsPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <div className="flex items-center justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button className="p-1.5 text-gray-400 hover:text-[var(--primary)] hover:bg-amber-50 dark:hover:bg-gray-800 rounded-md transition-colors">
-                          <Edit2 className="h-4 w-4" />
-                        </button>
-                        <button className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-gray-800 rounded-md transition-colors">
-                          <Trash2 className="h-4 w-4" />
-                        </button>
-                      </div>
+                      <ProductActions product={product} categories={categories} />
                     </td>
                   </tr>
                 ))

@@ -35,11 +35,10 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-widest text-white mb-6">Explore</h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li><Link href="#menu" className="hover:text-[var(--primary)] transition-colors">Our Menu</Link></li>
-              <li><Link href="#cakes" className="hover:text-[var(--primary)] transition-colors">Custom Cakes</Link></li>
-              <li><Link href="#about" className="hover:text-[var(--primary)] transition-colors">Our Story</Link></li>
-              <li><Link href="#gallery" className="hover:text-[var(--primary)] transition-colors">Gallery</Link></li>
-              <li><Link href="#contact" className="hover:text-[var(--primary)] transition-colors">Location</Link></li>
+              <li><Link href="/#menu" className="hover:text-[#a58641] transition-colors">Our Menu</Link></li>
+              <li><Link href="/collection" className="hover:text-[#a58641] transition-colors">Custom Cakes</Link></li>
+              <li><Link href="/#about" className="hover:text-[#a58641] transition-colors">Our Story</Link></li>
+              <li><Link href="/#contact" className="hover:text-[#a58641] transition-colors">Location</Link></li>
             </ul>
           </div>
 

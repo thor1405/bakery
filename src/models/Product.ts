@@ -67,6 +67,14 @@ const ProductSchema = new mongoose.Schema(
       enum: ["Active", "Draft", "Archived"],
       default: "Active",
     },
+    reviews: [
+      {
+        user: String,
+        rating: { type: Number, min: 1, max: 5 },
+        comment: String,
+        date: { type: Date, default: Date.now }
+      }
+    ]
   },
   { timestamps: true }
 );

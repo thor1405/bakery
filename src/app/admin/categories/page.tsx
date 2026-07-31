@@ -2,6 +2,7 @@ import connectToDatabase from "@/lib/mongodb";
 import Category from "@/models/Category";
 import { MoreVertical, Edit2, Trash2 } from "lucide-react";
 import { CreateCategoryModal } from "@/components/admin/CreateCategoryModal";
+import { CategoryActions } from "@/components/admin/CategoryActions";
 
 async function getCategories() {
   await connectToDatabase();
@@ -55,14 +56,7 @@ export default async function CategoriesPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <div className="flex items-center justify-end space-x-2">
-                        <button className="p-1.5 text-gray-400 hover:text-[var(--primary)] hover:bg-amber-50 dark:hover:bg-gray-800 rounded-md transition-colors">
-                          <Edit2 className="h-4 w-4" />
-                        </button>
-                        <button className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-gray-800 rounded-md transition-colors">
-                          <Trash2 className="h-4 w-4" />
-                        </button>
-                      </div>
+                      <CategoryActions category={category} />
                     </td>
                   </tr>
                 ))

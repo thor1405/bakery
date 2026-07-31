@@ -17,3 +17,5 @@ services:
       # - JWT_SECRET=your_super_secret_key
     env_file:
       - .env.local
+    volumes:
+      - ./public/uploads:/app/public/uploads

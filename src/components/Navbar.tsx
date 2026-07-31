@@ -4,11 +4,15 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { CartDrawer } from "./CartDrawer";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,10 +23,10 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Menu", href: "#menu" },
-    { name: "Cakes", href: "#cakes" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Menu", href: "/#menu" },
+    { name: "Cakes", href: "/collection" },
+    { name: "About", href: "/#about" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -41,7 +45,7 @@ export function Navbar() {
         <Link
           href="/"
           className={`text-2xl font-serif font-bold tracking-wider ${
-            isScrolled ? "text-[var(--foreground)]" : "text-white"
+            isScrolled || !isHome ? "text-[var(--foreground)]" : "text-white"
           }`}
         >
           CREAM CARAMEL
@@ -53,8 +57,8 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm tracking-wide uppercase transition-colors hover:text-[var(--primary)] ${
-                isScrolled ? "text-[var(--foreground)]" : "text-gray-200"
+              className={`text-sm tracking-wide uppercase transition-colors font-medium hover:text-[#9c6f44] ${
+                isScrolled || !isHome ? "text-gray-600" : "text-gray-200"
               }`}
             >
               {link.name}
@@ -62,24 +66,17 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Icons / CTAs */}
-        <div className="hidden md:flex items-center space-x-6">
-          <CartDrawer isScrolled={isScrolled} />
-          <Link
-            href="#order"
-            className="px-6 py-2 bg-[var(--primary)] text-white text-sm uppercase tracking-wider hover:bg-[#724a23] transition-colors rounded-sm"
+        {/* Icons & Mobile Toggle */}
+        <div className="flex items-center space-x-4 md:space-x-6">
+          <CartDrawer isDarkText={isScrolled || !isHome} />
+          
+          <button
+            className={`md:hidden ${isScrolled || !isHome ? "text-[var(--foreground)]" : "text-white"}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            Order Online
-          </Link>
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          className={`md:hidden ${isScrolled ? "text-[var(--foreground)]" : "text-white"}`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
 
       {/* Mobile Menu */}
@@ -89,23 +86,23 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-[rgba(0,0,0,0.1)] absolute w-full top-full left-0"
+            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl absolute w-full top-full left-0"
           >
             <div className="px-6 py-8 flex flex-col space-y-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-lg text-[var(--foreground)] uppercase tracking-wider font-medium"
+                  className="text-lg text-gray-900 uppercase tracking-wider font-medium hover:text-[#a58641] transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="h-px bg-[var(--border)] w-full my-4"></div>
+              <div className="h-px bg-gray-100 w-full my-4"></div>
               <Link
-                href="#order"
-                className="w-full py-3 text-center bg-[var(--primary)] text-white uppercase tracking-wider"
+                href="/collection"
+                className="w-full py-3 text-center bg-[#a58641] hover:bg-[#8b6f33] transition-colors text-white uppercase tracking-wider shadow-sm"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Order Online
