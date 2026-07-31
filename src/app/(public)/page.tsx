@@ -3,7 +3,7 @@ import Category from "@/models/Category";
 import Product from "@/models/Product";
 import { LandingPageClient } from "@/components/home/LandingPageClient";
 
-export const revalidate = 60; // Revalidate every 60 seconds (ISR)
+export const dynamic = 'force-dynamic';
 
 async function getCategories() {
   try {
