@@ -120,7 +120,7 @@ export function LandingPageClient({ categories = [], products = [] }: { categori
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover rounded-sm shadow-xl"
               />
-              <div className="absolute -bottom-6 -left-6 bg-white dark:bg-[var(--accent)] p-6 shadow-2xl">
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 shadow-2xl">
                 <p className="text-4xl font-serif text-[var(--primary)]">25+</p>
                 <p className="uppercase tracking-widest text-xs text-[var(--foreground)] mt-2">Years of <br/> Excellence</p>
               </div>
