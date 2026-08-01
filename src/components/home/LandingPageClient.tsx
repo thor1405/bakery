@@ -345,7 +345,7 @@ export function LandingPageClient({ categories = [], products = [] }: { categori
                 <input 
                   type="email" 
                   placeholder="Enter your email address" 
-                  className="flex-grow px-6 py-4 bg-white dark:bg-black border border-[var(--border)] focus:outline-none focus:border-[var(--primary)] transition-colors rounded-sm"
+                  className="flex-grow px-6 py-4 bg-white text-gray-900 placeholder:text-gray-500 border border-[var(--border)] focus:outline-none focus:border-[#a58641] transition-colors rounded-sm"
                   required
                 />
                 <button type="submit" className="px-8 py-4 bg-[var(--primary)] text-white uppercase tracking-widest text-sm hover:bg-[#724a23] transition-colors rounded-sm shadow-lg">
